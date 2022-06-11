@@ -3,15 +3,15 @@ jobs:
     build:
         docker:
             - image: circleci/python:3.7
+        
+        working_directory: ~/project/
+        
         steps:
             - checkout
 
             - restore_cache:
                   keys:
-                      # Find a cache corresponding to this specific requirements.txt checksum
-                      # when this file is changed, this key will fail
                       - v1-pip-deps-{{ checksum "requirements.txt" }}
-                      # Find the most recently generated cache used from any branch
                       - v1-pip-deps-
 
             - run:
